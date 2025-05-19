@@ -97,11 +97,11 @@ document.getElementById("senha").addEventListener("input", () => {
 });
 
 function baixarImagem() {
-  html2canvas(document.getElementById("preview")).then(canvas => {
+  html2canvas(document.getElementById("previewContent")).then(canvas => {
     canvas.toBlob(blob => {
       const link = document.createElement("a");
       link.href = URL.createObjectURL(blob);
-      link.download = "memoria.png";
+      link.download = "lembranca-do-casal.png";
       link.click();
     });
   });
