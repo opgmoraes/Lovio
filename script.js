@@ -17,20 +17,14 @@ function showStep(index) {
 function calcularTempoJuntos(data) {
   const hoje = new Date();
   const inicio = new Date(data);
-  const anos = hoje.getFullYear() - inicio.getFullYear();
-  const meses = hoje.getMonth() - inicio.getMonth();
-  const dias = hoje.getDate() - inicio.getDate();
-
-  let totalMeses = anos * 12 + meses;
-  if (dias < 0) totalMeses -= 1;
-
-  const anosFinal = Math.floor(totalMeses / 12);
-  const mesesFinal = totalMeses % 12;
+  const diff = hoje - inicio;
+  const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const anos = Math.floor(dias / 365);
+  const meses = Math.floor((dias % 365) / 30);
 
   let texto = "";
-  if (anosFinal > 0) texto += anosFinal + " ano" + (anosFinal > 1 ? "s" : "");
-  if (mesesFinal > 0) texto += (anosFinal > 0 ? " e " : "") + mesesFinal + " mês" + (mesesFinal > 1 ? "es" : "");
-
+  if (anos > 0) texto += `${anos} ano${anos > 1 ? "s" : ""}`;
+  if (meses > 0) texto += `${anos > 0 ? " e " : ""}${meses} mês${meses > 1 ? "es" : ""}`;
   return texto || "Menos de um mês";
 }
 
@@ -52,8 +46,6 @@ function nextStep() {
         document.getElementById("previewImage").src = e.target.result;
       };
       reader.readAsDataURL(imagemSelecionada);
-    } else {
-      document.getElementById("previewImage").style.display = "none";
     }
 
     const musicaLink = document.getElementById("musica").value;
@@ -61,21 +53,10 @@ function nextStep() {
     qrcodeDiv.innerHTML = "";
 
     if (musicaLink) {
-      QRCode.toCanvas(musicaLink, { width: 128 }, function (err, canvas) {
-        if (!err) {
-          qrcodeDiv.appendChild(canvas);
-          const btnQRCode = document.getElementById("baixarQRCode");
-          btnQRCode.style.display = "block";
-          btnQRCode.onclick = () => {
-            const link = document.createElement("a");
-            link.href = canvas.toDataURL("image/png");
-            link.download = "qrcode.png";
-            link.click();
-          };
-        }
+      const canvas = document.createElement("canvas");
+      QRCode.toCanvas(canvas, musicaLink, { width: 128 }, function (err) {
+        if (!err) qrcodeDiv.appendChild(canvas);
       });
-    } else {
-      document.getElementById("baixarQRCode").style.display = "none";
     }
   }
 
@@ -97,7 +78,7 @@ document.getElementById("senha").addEventListener("input", () => {
 });
 
 function baixarImagem() {
-  html2canvas(document.getElementById("previewContent")).then(canvas => {
+  html2canvas(document.getElementById("previewMontagem")).then(canvas => {
     canvas.toBlob(blob => {
       const link = document.createElement("a");
       link.href = URL.createObjectURL(blob);
