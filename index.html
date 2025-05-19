@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lovio - Musica & Amor</title>
+  <title>Lovio - Música & Amor</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="logo.png" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -12,13 +12,13 @@
 <body>
   <div class="container">
     <div class="header-logo">
-      <img src="lovio.png" alt="Lovio Logo">
+      <img src="lovio.png" alt="Lovio Logo" />
       <span class="logo-text">Lovio</span>
     </div>
 
     <div class="toggle-mode">
       <label class="switch">
-        <input type="checkbox" id="modeToggle">
+        <input type="checkbox" id="modeToggle" />
         <span class="slider round"></span>
       </label>
       <span id="modeLabel">Modo Claro</span>
@@ -31,7 +31,7 @@
     <!-- ETAPA 0 -->
     <section class="step active" id="step0">
       <h1>Dedique uma música para o seu amor</h1>
-      <p>Crie uma imagem personalizada com nome do casal, uma mensagem, data, imagem e música especial com QR Code.</p>
+      <p>Crie uma imagem personalizada com nome, mensagem, data, imagem e QR Code da música.</p>
       <button onclick="nextStep()">Começar</button>
     </section>
 
@@ -58,11 +58,13 @@
     <section class="step" id="step2">
       <h2>Etapa 2: Veja sua imagem</h2>
       <div id="preview">
-        <img id="previewImage" src="" alt="Imagem do usuário" />
-        <p><strong>Nome:</strong> <span id="prevNome"></span></p>
-        <p><strong>Mensagem:</strong> <span id="prevMensagem"></span></p>
-        <p><strong>Data:</strong> <span id="prevData"></span></p>
-        <div id="qrcode"></div>
+        <div id="previewContent">
+          <img id="previewImage" src="" alt="Imagem do usuário" />
+          <p><strong>Nome:</strong> <span id="prevNome"></span></p>
+          <p><strong>Mensagem:</strong> <span id="prevMensagem"></span></p>
+          <p><strong>Data:</strong> <span id="prevData"></span></p>
+          <div id="qrcode"></div>
+        </div>
         <button id="baixarQRCode" style="display:none;">Baixar QR Code</button>
       </div>
       <div class="nav-buttons">
