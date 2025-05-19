@@ -28,36 +28,33 @@
       <div id="progress" class="progress"></div>
     </div>
 
+    <!-- ETAPA 0 -->
     <section class="step active" id="step0">
       <h1>Dedique uma música para o seu amor</h1>
       <p>Crie uma imagem personalizada com nome do casal, uma mensagem, data, imagem e música especial com QR Code.</p>
       <button onclick="nextStep()">Começar</button>
     </section>
 
+    <!-- ETAPA 1 -->
     <section class="step" id="step1">
       <h2>Etapa 1: Preencha suas informações</h2>
-
       <label for="nome">Nome do casal:</label>
       <input id="nome" placeholder="Ex: Ana & João" />
-
       <label for="mensagem">Mensagem especial:</label>
       <textarea id="mensagem" placeholder="Ex: 3 anos de muito amor, carinho e cumplicidade."></textarea>
-
       <label for="data">Data do relacionamento:</label>
       <input type="date" id="data" />
-
       <label for="imagem">Sua imagem personalizada:</label>
       <input type="file" id="imagem" accept="image/*" />
-
       <label for="musica">Link da música (YouTube/Spotify):</label>
       <input type="url" id="musica" placeholder="https://..." />
-
       <div class="nav-buttons">
         <button onclick="prevStep()">Voltar</button>
         <button onclick="nextStep()">Próximo</button>
       </div>
     </section>
 
+    <!-- ETAPA 2 -->
     <section class="step" id="step2">
       <h2>Etapa 2: Veja sua imagem</h2>
       <div id="preview">
@@ -66,6 +63,7 @@
         <p><strong>Mensagem:</strong> <span id="prevMensagem"></span></p>
         <p><strong>Data:</strong> <span id="prevData"></span></p>
         <div id="qrcode"></div>
+        <button id="baixarQRCode" style="display:none;">Baixar QR Code</button>
       </div>
       <div class="nav-buttons">
         <button onclick="prevStep()">Voltar</button>
@@ -73,6 +71,7 @@
       </div>
     </section>
 
+    <!-- ETAPA 3 -->
     <section class="step" id="step3">
       <h2>Etapa 3: Pague com Cakto</h2>
       <p>Após o pagamento, você receberá uma senha no email para desbloquear o download.</p>
@@ -85,6 +84,7 @@
       </div>
     </section>
 
+    <!-- ETAPA 4 -->
     <section class="step" id="step4">
       <h2>Etapa 4: Desbloqueie e baixe sua imagem</h2>
       <input type="password" id="senha" placeholder="Digite a senha recebida" />
