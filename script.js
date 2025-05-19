@@ -57,11 +57,25 @@ function nextStep() {
     }
 
     const musicaLink = document.getElementById("musica").value;
-    document.getElementById("qrcode").innerHTML = "";
+    const qrcodeDiv = document.getElementById("qrcode");
+    qrcodeDiv.innerHTML = "";
+
     if (musicaLink) {
-      QRCode.toCanvas(document.createElement('canvas'), musicaLink, { width: 128 }, function (err, canvas) {
-        if (!err) document.getElementById("qrcode").appendChild(canvas);
+      QRCode.toCanvas(musicaLink, { width: 128 }, function (err, canvas) {
+        if (!err) {
+          qrcodeDiv.appendChild(canvas);
+          const btnQRCode = document.getElementById("baixarQRCode");
+          btnQRCode.style.display = "block";
+          btnQRCode.onclick = () => {
+            const link = document.createElement("a");
+            link.href = canvas.toDataURL("image/png");
+            link.download = "qrcode.png";
+            link.click();
+          };
+        }
       });
+    } else {
+      document.getElementById("baixarQRCode").style.display = "none";
     }
   }
 
